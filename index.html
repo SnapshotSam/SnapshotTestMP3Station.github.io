@@ -16,7 +16,8 @@
     background-position: center;
   }
   #playAll, #addStation {
-    margin-top: 10px;
+    margin-top: 40px;
+    margin-left: 20px;
   }
   /* New style to hide the audio controls */
   audio {
@@ -30,7 +31,7 @@
 
 <!-- Radio Stations -->
 <audio id="F3" controls loop>
-  <source src="https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Fallout_3_galaxy_news_radio-2008_vbr.m3u" type="audio/mpeg">
+  <source src="https://www.podtrac.com/pts/redirect.mp3/pdrl.fm/24b73d/dovetail.prxu.org/_/126/9f832d99-ce48-41c7-8d21-c600e30de503/1_nv244_intro.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -54,13 +55,13 @@
 
 <div id="controls">
   <!-- Updated button labels -->
-  <button class="switch-btn" onclick="switchRadio('F3')" style="background-image: url('https://ia601702.us.archive.org/25/items/Fallout_3_galaxy_news_radio-2008/folder_thumb.jpg?cnt=0');">Switch to Galaxy News</button>
+  <button class="switch-btn" onclick="switchRadio('F3')" style="background-image: url('https://i1.sndcdn.com/artworks-000062997166-5p1pzo-t500x500.jpg');">Switch to NightVale</button>
   <button class="switch-btn" onclick="switchRadio('F4')" style="background-image: url('https://pm1.aminoapps.com/6382/3627ae4a387d10c15ff994e01719f63bfbb274e6_00.jpg');">Switch to Diamond City</button>
   <button class="switch-btn" onclick="switchRadio('Lips106')" style="background-image: url('https://i1.sndcdn.com/artworks-000072272820-xd0hiu-t500x500.jpg');">Switch to Lips 106</button>
   <button class="switch-btn" onclick="switchRadio('RTPodcast')" style="background-image: url('https://play-lh.googleusercontent.com/8A60b87neNLxUlAyWWCKDfvVUg2QiTdrRwxFv1ZIZjRDHQHOIJ3nrH7zotHDxZZupg');">Switch to RT Podcast</button>
 </div>
 
-<button id="playAll" onclick="playAllRadios()">Play All</button>
+<button id="playAll" onclick="playAllRadios()">Play All/ Reset</button>
 <button id="addStation" onclick="promptForNewStation()">Add New Station</button>
 
 <script>
@@ -89,7 +90,7 @@ function playAllRadios() {
     var radio = radios[key];
     // Set a random start time between 0 and the duration of the audio file
     // Assuming each audio file is at least 2 minutes long for this example
-    var randomTime = Math.floor(Math.random() * 120); // Random time between 0 and 120 seconds
+    var randomTime = Math.floor(Math.random() * 300); // Random time between 0 and 300 seconds
     radio.currentTime = randomTime;
     radio.volume = 0.0; // Start muted
     radio.play();
