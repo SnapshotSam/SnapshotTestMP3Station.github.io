@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<h1 style="margin-left: 25px;">GTA III Radio Simulator</h1>
+<h1 style="margin-left: 25px;">GTA III+ Radio Simulator</h1>
 <style>
   #controls {
     margin-top: 00px;
@@ -69,12 +69,47 @@
 </audio>
 
 <audio id="R8" controls loop>
-  <source src="https://archive.org/download/GTAIII-RadioStations-2001/8.%20Flashback%2095.6.mp3" type="audio/mpeg">
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20III%20-%20Flashback%2095.6.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 <audio id="R9" controls loop>
   <source src="https://archive.org/download/GTAIII-RadioStations-2001/9.%20Chatterbox%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V1" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Emotion%2098.3.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V2" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Fever%20105.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V3" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Flash%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V4" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Radio%20Espantoso.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V5" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20V-Rock.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V6" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Wave%20103.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="V7" controls loop>
+  <source src="https://archive.org/download/complete-cds/Grand%20Theft%20Auto%20-%20Vice%20City%20-%20Wildstyle.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -94,6 +129,19 @@
   <button class="switch-btn" onclick="switchRadio('R9')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/7/77/ChatterboxFM-GTAIII-Logo.svg');">.</button>
 </div>
 
+ </br></br>
+
+<div id="controls">
+  <!-- Updated button labels -->
+  <button class="switch-btn" onclick="switchRadio('V1')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/0/06/Emotion98.3-GTAVC-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('v2')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/1/14/Fever_105.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('V3')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/7/74/FlashFM-GTAVC-Logo.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('v4')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/8/83/RadioEspantoso-GTAVC-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('v5')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/67/V-Rock-GTAVC-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('v6')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/4/42/Wave103-GTAVC-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('v7')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/6a/WildstylePirateRadio-GTAVC-Logo.png');">.</button>
+</div>
+  
 <button id="playAll" onclick="playAllRadios()">Play All/ Reset</button>
 <button id="addStation" onclick="promptForNewStation()">Add New Station</button>
 
@@ -113,7 +161,14 @@ var radios = {
   'R6': document.getElementById('R6'),
   'R7': document.getElementById('R7'),
   'R8': document.getElementById('R8'),
-  'R9': document.getElementById('R9')
+  'R9': document.getElementById('R9'),
+  'V1': document.getElementById('V1'),
+  'V2': document.getElementById('V2'),
+  'V3': document.getElementById('V3'),
+  'V4': document.getElementById('V4'),
+  'V5': document.getElementById('V5'),
+  'V6': document.getElementById('V6'),
+  'V7': document.getElementById('V7')
 };
 var switchSound = document.getElementById('switchSound');
 
