@@ -21,22 +21,23 @@
 </head>
 <body>
 
-<audio id="radio1" controls loop>
-  <source src="https://archive.org/download/johann-sebastian-bach-concerto-for-2-violins-in-d-minor-allegro-ma-non-troppo/Bert%20Weedon-Lazy%20Day%20Blues.mp3" type="audio/mpeg">
+<!-- Radio Stations -->
+<audio id="F3" controls loop>
+  <source src="https://archive.org/download/Fallout_3_galaxy_news_radio-2008/Fallout_3_galaxy_news_radio-2008_vbr.m3u" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<audio id="radio2" controls loop>
-  <source src="https://archive.org/download/johann-sebastian-bach-concerto-for-2-violins-in-d-minor-allegro-ma-non-troppo/Johann%20Sebastian%20Bach-Concerto%20for%202%20Violins%20In%20D%20Minor-Allegro%20Ma%20Non%20Troppo.mp3" type="audio/mpeg">
+<audio id="F4" controls loop>
+  <source src="https://cf-media.sndcdn.com/vSCB5epYcCGT.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vdlNDQjVlcFljQ0dULjEyOC5tcDMqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzE1NDMyNTQ0fX19XX0_&Signature=Zb-InBoi695ab33DVEwRSdzmWIs8xbvivEHpS~Nii9nf-iK8qmF9tr5dPysJkCZYgHzC2XI9fdWm3yp4ZHqgbRxhb-faLkz6w3oSY-5rnVFz-pLJt-Q2ShnxItVF18JlPz0BdnFH81eMI9IdmfdazeW2FMIuuSc7bK7SQOcYT-xzfzFbaOpOO0~PVjSOQyJg0jiRFM8HW7s2YKxrlatDZiUM2Ev6fFnlu3hV-BE49GZQvQ4DOd2QW7FoDuCM0bkwOk9ezJkJza8NjgEB97TtlbPd3xZtDjI2Mocr53GUEibVoMsayatGWmGqZPLPKUPXIVO~yceaEegEiqvCdggl~w__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<audio id="radio3" controls loop>
+<audio id="Lips106" controls loop>
   <source src="https://ia803400.us.archive.org/17/items/GTAIII-RadioStations-2001/5.%20Lips%20106.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<audio id="radio4" controls loop>
+<audio id="RTPodcast" controls loop>
   <source src="https://archive.org/download/rt-rooster-teeth-podcast/Rooster%20Teeth%20Podcast%20%28FIRST%20Member%20Ad-Free%29/2009-05-22%20-%20Rooster%20Teeth%20Podcast%20%236.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
@@ -45,62 +46,65 @@
 <audio id="switchSound" src="https://www.myinstants.com/media/sounds/untitled_6dhfXn6.mp3"></audio>
 
 <div id="controls">
-  <button class="switch-btn" onclick="switchRadio(1)" style="background-image: url('icon-for-radio-1.png');">Switch to Radio 1</button>
-  <button class="switch-btn" onclick="switchRadio(2)" style="background-image: url('icon-for-radio-2.png');">Switch to Radio 2</button>
-  <button class="switch-btn" onclick="switchRadio(3)" style="background-image: url('icon-for-radio-3.png');">Switch to Radio 3</button>
-  <button class="switch-btn" onclick="switchRadio(4)" style="background-image: url('icon-for-radio-4.png');">Switch to Radio 4</button>
+  <!-- Updated button labels -->
+  <button class="switch-btn" onclick="switchRadio('F3')" style="background-image: url('https://ia601702.us.archive.org/25/items/Fallout_3_galaxy_news_radio-2008/folder_thumb.jpg?cnt=0');">Switch to Galaxy News</button>
+  <button class="switch-btn" onclick="switchRadio('F4')" style="background-image: url('https://pm1.aminoapps.com/6382/3627ae4a387d10c15ff994e01719f63bfbb274e6_00.jpg');">Switch to Diamond City</button>
+  <button class="switch-btn" onclick="switchRadio('Lips106')" style="background-image: url('https://i1.sndcdn.com/artworks-000072272820-xd0hiu-t500x500.jpg');">Switch to Lips 106</button>
+  <button class="switch-btn" onclick="switchRadio('RTPodcast')" style="background-image: url('https://play-lh.googleusercontent.com/8A60b87neNLxUlAyWWCKDfvVUg2QiTdrRwxFv1ZIZjRDHQHOIJ3nrH7zotHDxZZupg');">Switch to RT Podcast</button>
 </div>
 
 <button id="playAll" onclick="playAllRadios()">Play All</button>
 <button id="addStation" onclick="promptForNewStation()">Add New Station</button>
 
 <script>
-var radios = [
-  document.getElementById('radio1'),
-  document.getElementById('radio2'),
-  document.getElementById('radio3'),
-  document.getElementById('radio4')
-];
+var radios = {
+  'F3': document.getElementById('F3'),
+  'F4': document.getElementById('F4'),
+  'Lips106': document.getElementById('Lips106'),
+  'RTPodcast': document.getElementById('RTPodcast')
+};
 var switchSound = document.getElementById('switchSound');
 
 // Function to switch to a specific radio and play sound effect
-function switchRadio(number) {
+function switchRadio(stationName) {
   // Play switch sound effect
   switchSound.play();
 
   // Adjust volumes
-  radios.forEach(function(radio, index) {
-    radio.volume = (index === number - 1) ? 1.0 : 0.0;
-  });
+  for (var key in radios) {
+    radios[key].volume = (key === stationName) ? 1.0 : 0.0;
+  }
 }
 
 // Function to play all radios with random start times
 function playAllRadios() {
-  radios.forEach(function(radio) {
+  for (var key in radios) {
+    var radio = radios[key];
     // Set a random start time between 0 and the duration of the audio file
     // Assuming each audio file is at least 2 minutes long for this example
     var randomTime = Math.floor(Math.random() * 120); // Random time between 0 and 120 seconds
     radio.currentTime = randomTime;
     radio.volume = 0.0; // Start muted
     radio.play();
-  });
+  }
 }
 
 // Function to prompt for new station details and add it
 function promptForNewStation() {
+  var stationName = prompt('Enter the name for the new station:');
   var audioSrc = prompt('Enter the URL for the new audio file:');
   var iconUrl = prompt('Enter the URL for the new icon:');
   
-  if (audioSrc && iconUrl) {
-    addRadio(audioSrc, iconUrl);
+  if (stationName && audioSrc && iconUrl) {
+    addRadio(stationName, audioSrc, iconUrl);
   } else {
-    alert('You must provide both an audio file URL and an icon URL.');
+    alert('You must provide a name, an audio file URL, and an icon URL.');
   }
 }
 
 // Function to add a new radio station
-function addRadio(audioSrc, iconUrl) {
-  var newRadioId = 'radio' + (radios.length + 1);
+function addRadio(stationName, audioSrc, iconUrl) {
+  var newRadioId = stationName;
   var newRadioHtml = `
     <audio id="${newRadioId}" controls loop>
       <source src="${audioSrc}" type="audio/mpeg">
@@ -113,16 +117,16 @@ function addRadio(audioSrc, iconUrl) {
 
   // Create a new switch button for the radio
   var newButtonHtml = `
-    <button class="switch-btn" onclick="switchRadio(${radios.length + 1})" style="background-image: url('${iconUrl}');">Switch to Radio ${radios.length + 1}</button>
+    <button class="switch-btn" onclick="switchRadio('${stationName}')" style="background-image: url('${iconUrl}');">Switch to ${stationName}</button>
   `;
   document.getElementById('controls').innerHTML += newButtonHtml;
 
-  // Add the new radio to the radios array and set up its volume
+  // Add the new radio to the radios object and set up its volume
   var newRadioElement = document.getElementById(newRadioId);
   newRadioElement.volume = 0.0; // Start muted
-  radios.push(newRadioElement);
-  }
-  
+  radios[stationName] = newRadioElement;
+}
+
   // Function to copy the current page HTML to the clipboard
 function copyPageHTML() {
   var pageHTML = document.documentElement.outerHTML;
@@ -133,47 +137,14 @@ function copyPageHTML() {
   });
 }
 
-// Function to copy the page HTML without the first 4 stations to the clipboard
-function copyPageHTMLWithoutFirst4Stations() {
-  var pageHTML = document.documentElement.outerHTML;
-  // Remove the first 4 radio stations from the HTML string
-  pageHTML = pageHTML.replace(/<audio id="radio[1-4]"[\s\S]*?<\/audio>/g, '');
-  navigator.clipboard.writeText(pageHTML).then(function() {
-    alert('Page HTML without first 4 stations copied to clipboard!');
-  }, function(err) {
-    alert('Failed to copy: ', err);
-  });
-}
-
 // Add the buttons to the page
 document.body.innerHTML += `
   <button onclick="copyPageHTML()">Copy Page Code</button>
-  <button onclick="copyPageHTMLWithoutFirst4Stations()">Copy Code Without First 4 Stations</button>
 `;
 
 // Function to copy the current page HTML to the clipboard using a textarea
 function copyPageHTML() {
   var pageHTML = document.documentElement.outerHTML;
-  var textArea = document.createElement('textarea');
-  textArea.value = pageHTML;
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    alert('Copy command was ' + msg);
-  } catch (err) {
-    alert('Oops, unable to copy');
-  }
-  document.body.removeChild(textArea);
-}
-
-// Function to copy the page HTML without the first 4 stations to the clipboard using a textarea
-function copyPageHTMLWithoutFirst4Stations() {
-  var pageHTML = document.documentElement.outerHTML;
-  // Remove the first 4 radio stations from the HTML string
-  pageHTML = pageHTML.replace(/<audio id="radio[1-4]"[\s\S]*?<\/audio>/g, '');
-
   var textArea = document.createElement('textarea');
   textArea.value = pageHTML;
   document.body.appendChild(textArea);
