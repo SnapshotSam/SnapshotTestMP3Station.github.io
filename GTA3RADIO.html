@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1 style="margin-left: 25px;">GTA III Radio Simulator</h1>
+<style>
+  #controls {
+    margin-top: 00px;
+    margin-left: 20px;
+  }
+  .switch-btn {
+    width: 100px; /* Adjust as needed to fit the icon */
+    height: 100px; /* Adjust as needed to fit the icon */
+    border: none;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  #playAll, #addStation {
+    margin-top: 40px;
+    margin-left: 20px;
+  }
+  /* New style to hide the audio controls */
+  audio {
+    display: none;
+  }
+</style>
+</head>
+</style>
+</head>
+<body>
+
+<!-- Radio Stations -->
+<audio id="R1" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/1.%20Head%20Radio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R2" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/2.%20Double%20Clef%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R3" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/3.%20K-Jah.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R4" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/4.%20Rise%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R5" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/5.%20Lips%20106.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R6" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/6.%20Game%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R7" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/7.%20MSX%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R8" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/8.%20Flashback%2095.6.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R9" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/9.%20Chatterbox%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Sound effect for switching stations -->
+<audio id="switchSound" src="https://github.com/SnapshotSam/snapshotsamtest.github.io/raw/main/RADIOSTATIC.mp3"></audio>
+
+<div id="controls">
+  <!-- Updated button labels -->
+  <button class="switch-btn" onclick="switchRadio('R1')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/a/a4/HeadRadio-GTAIII-BuildingLogoTexture.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R2')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/66/DoubleClefFM-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R3')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/e/ed/K-JahRadio-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R4')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/4/41/RiseFM-GTALCS-Logo.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R5')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/68/Lips106.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R6')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/d/dd/GameRadio.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R7')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/c/c1/MSXFM-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R8')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/f/f6/FlashbackFM-GTA3-logo.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R9')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/7/77/ChatterboxFM-GTAIII-Logo.svg');">.</button>
+</div>
+
+<button id="playAll" onclick="playAllRadios()">Play All/ Reset</button>
+<button id="addStation" onclick="promptForNewStation()">Add New Station</button>
+
+    
+    
+</br></br>
+<center><h3>Warning, This site will not balance the audio automatically between sources.</h3><h4>Press Play All to Begin and pick a station</h4><small>No Audio Files are Hosted here.</br></small></center>
+
+
+<script>
+var radios = {
+  'F3': document.getElementById('F3'),
+  'F4': document.getElementById('F4'),
+  'Lips106': document.getElementById('Lips106'),
+  'RTPodcast': document.getElementById('RTPodcast')
+};
+var switchSound = document.getElementById('switchSound');
+
+// Function to switch to a specific radio and play sound effect
+function switchRadio(stationName) {
+  // Play switch sound effect
+  switchSound.play();
+
+  // Adjust volumes
+  for (var key in radios) {
+    radios[key].volume = (key === stationName) ? 1.0 : 0.0;
+  }
+}
+
+// Function to play all radios with random start times
+function playAllRadios() {
+  for (var key in radios) {
+    var radio = radios[key];
+    // Set a random start time between 0 and the duration of the audio file
+    // Assuming each audio file is at least 2 minutes long for this example
+    var randomTime = Math.floor(Math.random() * 500); // Random time between 0 and 500 seconds
+    radio.currentTime = randomTime;
+    radio.volume = 0.0; // Start muted
+    radio.play();
+  }
+}
+
+
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<h1 style="margin-left: 25px;">GTA III Radio Simulator</h1>
+<style>
+  #controls {
+    margin-top: 00px;
+    margin-left: 20px;
+  }
+  .switch-btn {
+    width: 100px; /* Adjust as needed to fit the icon */
+    height: 100px; /* Adjust as needed to fit the icon */
+    border: none;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  #playAll, #addStation {
+    margin-top: 40px;
+    margin-left: 20px;
+  }
+  /* New style to hide the audio controls */
+  audio {
+    display: none;
+  }
+</style>
+</head>
+</style>
+</head>
+<body>
+
+<!-- Radio Stations -->
+<audio id="R1" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/1.%20Head%20Radio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R2" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/2.%20Double%20Clef%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R3" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/3.%20K-Jah.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R4" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/4.%20Rise%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R5" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/5.%20Lips%20106.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R6" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/6.%20Game%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R7" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/7.%20MSX%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R8" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/8.%20Flashback%2095.6.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="R9" controls loop>
+  <source src="https://archive.org/download/GTAIII-RadioStations-2001/9.%20Chatterbox%20FM.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Sound effect for switching stations -->
+<audio id="switchSound" src="https://github.com/SnapshotSam/snapshotsamtest.github.io/raw/main/RADIOSTATIC.mp3"></audio>
+
+<div id="controls">
+  <!-- Updated button labels -->
+  <button class="switch-btn" onclick="switchRadio('R1')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/a/a4/HeadRadio-GTAIII-BuildingLogoTexture.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R2')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/66/DoubleClefFM-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R3')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/e/ed/K-JahRadio-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R4')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/4/41/RiseFM-GTALCS-Logo.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R5')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/6/68/Lips106.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R6')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/d/dd/GameRadio.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R7')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/c/c1/MSXFM-GTAIII-Logo.svg');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R8')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/f/f6/FlashbackFM-GTA3-logo.png');">.</button>
+  <button class="switch-btn" onclick="switchRadio('R9')" style="background-image: url('https://static.wikia.nocookie.net/gtawiki/images/7/77/ChatterboxFM-GTAIII-Logo.svg');">.</button>
+</div>
+
+<button id="playAll" onclick="playAllRadios()">Play All/ Reset</button>
+<button id="addStation" onclick="promptForNewStation()">Add New Station</button>
+
+    
+    
+</br></br>
+<center><h3>Warning, This site will not balance the audio automatically between sources.</h3><h4>Press Play All to Begin and pick a station</h4><small>No Audio Files are Hosted here.</br></small></center>
+
+
+<script>
+var radios = {
+  'F3': document.getElementById('F3'),
+  'F4': document.getElementById('F4'),
+  'Lips106': document.getElementById('Lips106'),
+  'RTPodcast': document.getElementById('RTPodcast')
+};
+var switchSound = document.getElementById('switchSound');
+
+// Function to switch to a specific radio and play sound effect
+function switchRadio(stationName) {
+  // Play switch sound effect
+  switchSound.play();
+
+  // Adjust volumes
+  for (var key in radios) {
+    radios[key].volume = (key === stationName) ? 1.0 : 0.0;
+  }
+}
+
+// Function to play all radios with random start times
+function playAllRadios() {
+  for (var key in radios) {
+    var radio = radios[key];
+    // Set a random start time between 0 and the duration of the audio file
+    // Assuming each audio file is at least 2 minutes long for this example
+    var randomTime = Math.floor(Math.random() * 500); // Random time between 0 and 500 seconds
+    radio.currentTime = randomTime;
+    radio.volume = 0.0; // Start muted
+    radio.play();
+  }
+}
+
+
+
+</script>
+
+</body>
+</html>
